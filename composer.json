@@ -6,7 +6,8 @@
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle/",
-            "Darsyn\\Bundle\\": "src/"
+            "Darsyn\\Bundle\\": "src/",
+            "Darsyn\\": "lib/"
         },
         "classmap": [
             "app/AppKernel.php",
@@ -27,7 +28,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\AppBundle\\": "tests/AppBundle/",
+            "Tests\\Darsyn\\Bundle\\": "tests/",
+            "Tests\\Darsyn\\": "tests/"
         }
     },
     "require-dev": {
