@@ -1,4 +1,42 @@
 services:
-#    app.example:
-#        class: Acme\AppBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+
+    # The following two services, "app.class_finder" and "app.class_finder.in_bundle", require the "darsyn/class-finder"
+    # dependency.
+    app.class_finder:
+        class: Darsyn\ClassFinder\ClassFinder
+        shared: false
+    app.class_finder.in_bundle:
+        class: Darsyn\ClassFinder\BundleClassFinder
+        arguments: [ "@kernel" ]
+
+    app.http_client.guzzle:
+        class: GuzzleHttp\Client
+    app.http_client:
+        class: Http\Adapter\Guzzle6\Client
+        arguments: ["@app.http_client.guzzle"]
+
+    # The "app.factory.http_message" service requires the following dependencies to function correctly:
+    # - php-http/client-implementation
+    # - php-http/discovery
+    # - php-http/message
+    # - php-http/message-factory
+    app.factory.http_message:
+        class: Http\Message\MessageFactory
+        factory: [Http\Discovery\MessageFactoryDiscovery, find]
+
+    app.factory.dom_crawler:
+        class: AppBundle\Scraper\Factory\DomCrawlerFactory
+
+    app.remote_dom:
+        class: AppBundle\Scraper\RemoteDom
+        arguments:
+            - "@app.http_client"
+            - "@app.factory.http_message"
+            - "@app.factory.dom_crawler"
+
+    app.scraper_coordinator:
+        class: AppBundle\Scraper\Coordinator
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@app.class_finder"
+            - "@app.remote_dom"

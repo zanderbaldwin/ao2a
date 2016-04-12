@@ -7,24 +7,17 @@ use Ramsey\Uuid\Uuid;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fandoms")
+ * @ORM\Table(name="media")
  * @ORM\HasLifecycleCallbacks
  */
-class Fandom
+class Media
 {
     /**
      * @ORM\Id
      * @ORM\Column(type="uuid")
-     * @var integer
+     * @var \Ramsey\Uuid\Uuid
      */
     protected $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Media")
-     * @ORM\JoinColumn(name="media", nullable=false)
-     * @var \AppBundle\Entity\Media
-     */
-    protected $media;
 
     /**
      * @ORM\Column(type="string")
@@ -51,7 +44,7 @@ class Fandom
     protected $updatedOn;
 
     /**
-     * @param  \Ramsey\Uuid\Uuid $id
+     * @param \Ramsey\Uuid\Uuid
      */
     public function __construct(Uuid $id = null)
     {
@@ -72,23 +65,6 @@ class Fandom
     public function getId()
     {
         return (string) $this->id;
-    }
-
-    /**
-     * @return \AppBundle\Entity\Media
-     */
-    public function getMedia()
-    {
-        return $this->media;
-    }
-
-    /**
-     * @param \AppBundle\Entity\Media $media
-     * @return void
-     */
-    public function setMedia(Media $media)
-    {
-        $this->media = $media;
     }
 
     /**
