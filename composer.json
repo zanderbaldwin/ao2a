@@ -23,8 +23,26 @@
         "symfony/monolog-bundle": "^2.8",
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "incenteev/composer-parameter-handler": "^2.0",
-        "php": ">=5.5.9"
+        "doctrine/doctrine-fixtures-bundle":            "~2.2",
+        "ramsey/uuid-doctrine":                         "~1.0",
+        "friendsofsymfony/oauth-server-bundle":         "~1.4",
+        "friendsofsymfony/rest-bundle":                 "~1.5",
+
+        "php-http/guzzle6-adapter":                     "^1.0",
+        "php-http/client-implementation":               "^1.0",
+        "php-http/httplug":                             "@stable",
+        "php-http/discovery":                           "@stable",
+        "php-http/message":                             "@stable",
+
+        "darsyn/ip":                                    "~2.0",
+        "darsyn/class-finder":                          "^3.0.1",
+        "league/commonmark":                            "~0.8",
+        "league/commonmark-extras":                     "@stable",
+        "leg/simhash-php":                              "~1.0",
+
+        "vlucas/phpdotenv":                             "~1.1",
+        "incenteev/composer-parameter-handler":         "^2.0",
+        "php":                                          ">=5.5.9"
     },
     "autoload-dev": {
         "psr-4": {
@@ -34,8 +52,19 @@
         }
     },
     "require-dev": {
-        "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^2.7"
+        "sensio/generator-bundle":                      "^3.0",
+        "symfony/phpunit-bridge":                       "^2.7",
+        "php-http/mock-client":                         "~0.1",
+        "squizlabs/php_codesniffer":                    "@stable",
+        "phpunit/phpunit":                              "@stable",
+        "php-vcr/php-vcr":                              "@stable",
+        "mikey179/vfsStream":                           "@stable"
+    },
+    "minimum-stability": "alpha",
+    "prefer-stable": true,
+    "config": {
+        "bin-dir": "bin",
+        "prefer-dist": true
     },
     "scripts": {
         "post-install-cmd": [
